@@ -11,4 +11,10 @@ router.get('/list/:ArticleId',cs.getData)
 //add data
 router.post('/add',cs.addData)
 
+//delete data
+router.post('/delete/:ArticleId',cs.deleteData)
+
+//update data
+router.post('/update',cs.updateData)
+
 module.exports=router

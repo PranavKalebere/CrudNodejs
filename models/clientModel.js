@@ -4,31 +4,31 @@ const Schema=mongoose.Schema
 
 const clientSchema=new Schema({
     ArticleId:{
-        typeof:Number
+        type:Number
     },
     Title:{
-        typeof:String
+        type:String
     },
     Description:{
-        typeof:String
+        type:String
     },
     AuthorFirstName:{
-        typeof:String
+        type:String
     },
     AuthorLastName:{
-        typeof:String
+        type:String
     },
     AuthorEmailId:{
-        typeof:String
+        type:String
     },
     ArticleCreatedDate:{
-        typeof:String
+        type:String
     },
     ArticlePublishedDate:{
-        typeof:String
+        type:String
     },
     AuthorPhoneNumber:{
-        typeof:Number
+        type:Number
     },
 },{timestamps:true})
 
