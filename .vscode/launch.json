@@ -8,6 +8,8 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
+            "outputCapture": "std",
+            "console": "integratedTerminal",
             "skipFiles": [
                 "<node_internals>/**"
             ],

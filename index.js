@@ -2,6 +2,7 @@ const express=require('express')
 const mongoose=require('mongoose')
 const bodyParser = require("body-parser");
 const app=express()
+require('dotenv').config()
 
 
 app.use(bodyParser.json());    
@@ -9,7 +10,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-mongoose.connect("mongodb://localhost:27017/ClientDB",{useNewUrlParser:true,useUnifiedTopology:true})
+mongoose.connect(process.env.Mongodb_Connection,{useNewUrlParser:true,useUnifiedTopology:true})
 const db=mongoose.connection
 
 db.on('error',(err)=>{
@@ -23,8 +24,8 @@ db.once('open',()=>{
 const controller=require('./controllers/clientContoller')
 app.use('/api',controller)
 
-app.listen(1999,()=>{
-    console.log("Server running on Port 1999")
+app.listen(process.env.PORT,()=>{
+    console.log("Server running on Port "+process.env.PORT)
 })
 
 

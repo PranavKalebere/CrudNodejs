@@ -32,4 +32,4 @@ const clientSchema=new Schema({
     },
 },{timestamps:true})
 
-module.exports=new mongoose.model('ClientModel',clientSchema)
+module.exports=new mongoose.model(process.env.Collection,clientSchema)

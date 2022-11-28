@@ -70,7 +70,7 @@ exports.deleteData = (req, res) =>{
 //update the data
 exports.updateData = (req, res)=> {
     
-    ClientModel.updateOne(
+    ClientModel.updateMany(
         { 
             ArticleId:req.body.ArticleId
         },
