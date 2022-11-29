@@ -1,0 +1,5 @@
+{
+    "PORT":1999,
+    "Mongodb_Connection":"mongodb://localhost:27017/ClientDB",
+    "Collection":"ClientModel"
+}

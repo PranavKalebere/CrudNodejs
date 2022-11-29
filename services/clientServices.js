@@ -6,7 +6,7 @@ exports.test=(req,res)=>{
 }
 
 //add data
-exports.addData = (req, res)=> {
+exports.addData = (req,res)=> {
     const newClientModel= new ClientModel({
         ArticleId : req.body.ArticleId, 
         Title : req.body.Title, 
@@ -20,13 +20,18 @@ exports.addData = (req, res)=> {
 
     })
     console.log(newClientModel)
+    if(!req.file){
+        console.log("File not found")
+    }else{
+        newClientModel.CoverPage = req.file.path
+    }
 
     newClientModel.save(err => {
         if (err) {
             console.error(err);
             res.sendStatus(400);
         }
-        res.json({message: "Nem employee added."})
+        res.json({message: "New employee added."})
     })
     
 };
@@ -94,3 +99,4 @@ exports.updateData = (req, res)=> {
     )    
      
 };
+

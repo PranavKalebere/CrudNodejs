@@ -1,5 +1,6 @@
 const mongoose=require('mongoose')
 const Schema=mongoose.Schema
+const constant=require('../constant.json')
 
 
 const clientSchema=new Schema({
@@ -12,6 +13,9 @@ const clientSchema=new Schema({
     Description:{
         type:String
     },
+    CoverPage:{
+        type:String
+    },
     AuthorFirstName:{
         type:String
     },
@@ -22,14 +26,14 @@ const clientSchema=new Schema({
         type:String
     },
     ArticleCreatedDate:{
-        type:String
+        type:Date
     },
     ArticlePublishedDate:{
-        type:String
+        type:Date
     },
     AuthorPhoneNumber:{
         type:Number
     },
 },{timestamps:true})
 
-module.exports=new mongoose.model(process.env.Collection,clientSchema)
+module.exports=new mongoose.model(constant.Collection,clientSchema)
