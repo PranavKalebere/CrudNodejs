@@ -1,0 +1,7 @@
+{
+    "Test_Api":"/test",
+    "Get_By_ArticleId":"/list/:ArticleId",
+    "Add_Data":"/add",
+    "Delete_By_ArticleId":"/delete/:ArticleId",
+    "Update_Data":"/update"
+}

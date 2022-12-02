@@ -1,0 +1,7 @@
+{
+    "Collection":"UserModel",
+    "Get_By_UserId":"/list/:UserId",
+    "Add_Data":"/addUser",
+    "Delete_By_UserId":"/delete/:UserId",
+    "Update_Data":"/update"
+}

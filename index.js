@@ -1,9 +1,12 @@
 const express = require('express')
 const bodyParser = require("body-parser");
 const app = express()
-const constant = require('./constant.json')
+const constant = require('./constant/constant.json')
+const controller = require('./controllers/clientContoller')
 
-const db = require('./connection/mongodbConnection')
+const userController = require('./controllers/userController')
+
+require('./connection/mongodbConnection')
 
 require('dotenv').config()
 
@@ -17,8 +20,9 @@ app.use(bodyParser.urlencoded({
 app.use('/uploads', express.static(`${__dirname}/uploads`));
 
 
-const controller = require('./controllers/clientContoller')
-app.use('/api', controller)
+app.use('/api', controller,userController)
+
+// app.use('/apiUser', userController)
 
 app.listen(constant.PORT, () => {
     console.log("Server running on Port " + constant.PORT)

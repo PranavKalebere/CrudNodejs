@@ -5,20 +5,22 @@ const cs=require('../services/clientServices')
 
 const upload=require('../middleware/upload')
 
-//test route
-router.get('/test',cs.test)
+const apiConstant=require('../constant/ApiConstant.json')
 
-//list client
-router.get('/list/:ArticleId',cs.getData)
+//test route
+router.get(apiConstant.Test_Api,cs.test)
+
+//list the data
+router.get(apiConstant.Get_By_ArticleId,cs.getData)
 
 //add data
-router.post('/add',upload.single('CoverPage'),cs.addData)
+router.post(apiConstant.Add_Data,upload.single('CoverPage'),cs.addData)
 
 //delete data
-router.delete('/delete/:ArticleId',cs.deleteData)
+router.delete(apiConstant.Delete_By_ArticleId,cs.deleteData)
 
 //update data
-router.put('/update',cs.updateData)
+router.put(apiConstant.Update_Data,cs.updateData)
 
 
 module.exports=router

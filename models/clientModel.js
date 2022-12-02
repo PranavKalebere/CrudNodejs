@@ -1,6 +1,6 @@
 const mongoose=require('mongoose')
 const Schema=mongoose.Schema
-const constant=require('../constant.json')
+const constant=require('../constant/constant.json')
 
 
 const clientSchema=new Schema({
