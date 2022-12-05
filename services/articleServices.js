@@ -1,6 +1,8 @@
-const ClientModel = require('../models/clientModel');
+const ArticleModel = require('../models/articleModel');
 
 const dateValidation=require('../utilities/utility')
+
+const constant=require('../constant/constant.json')
 
 //For testing the API
 exports.test=(req,res)=>{
@@ -8,9 +10,10 @@ exports.test=(req,res)=>{
 }
 
 //For adding the data
-exports.addData = (req,res)=> {
-    if(dateValidation(req.body.ArticleCreatedDate) && dateValidation(req.body.ArticlePublishedDate)){
-    const newClientModel= new ClientModel({
+exports.addField = (req,res)=> {
+    try{
+   if(validationBodyOfApiRequest && dateValidation(req.body.ArticleCreatedDate) && dateValidation(req.body.ArticlePublishedDate)){
+    const newArticleModel= new ArticleModel({
         ArticleId : req.body.ArticleId, 
         Title : req.body.Title, 
         Description : req.body.Description, 
@@ -22,33 +25,35 @@ exports.addData = (req,res)=> {
         AuthorPhoneNumber : req.body.AuthorPhoneNumber
 
     })
-    console.log(newClientModel)
+    console.log(newArticleModel)
     if(!req.file){
-        console.log("File not found")
+        console.log(constant.File_Not_Found)
     }else{
-        newClientModel.CoverPage = req.file.path
+        newArticleModel.CoverPage = req.file.path
     }
 
-    newClientModel.save(err => {
+    newArticleModel.save(err => {
         if (err) {
             console.error(err);
             res.sendStatus(400);
         }else{
             res.status(200)
-            res.json({message: "New employee added."})
+            res.json({message: constant.Record_Add})
         }
     })
     
-    }else{
-        res.status(400);
-        res.json({message:"Enter valid Date"})
     }
+}catch{
+        res.status(400);
+        res.json({message: constant.Invalid_Data})
+}
 };
 
 //For getting the data by ArticleId
-exports.getData= (req, res) =>{
+exports.getByArticleId= (req, res) =>{
+    try{
     console.log(req.params.ArticleId)
-    ClientModel.find(
+    ArticleModel.find(
         { 
             ArticleId:parseInt( req.params.ArticleId)
         
@@ -56,7 +61,6 @@ exports.getData= (req, res) =>{
         (err, results) => {
             console.log(results)
             if (!err) {
-                res.json(200)
                 res.json(results); 
             }else{
                 res.json(400)    
@@ -64,12 +68,16 @@ exports.getData= (req, res) =>{
             }
         }
     )  
+    }catch{
+        res.status(400);
+        res.json({message: constant.ArticleId_Invalid})
+    }
 };
 
 //For Deleting the Data for ArticleId
-exports.deleteData = (req, res) =>{
-    
-    ClientModel.deleteOne(
+exports.deleteDataByArticleId = (req, res) =>{
+    try{    
+    ArticleModel.deleteOne(
         { 
             ArticleId:req.params.ArticleId
         
@@ -77,21 +85,21 @@ exports.deleteData = (req, res) =>{
         (err, results) => {
             if (!err) {
                 res.json(200)
-                res.json({message: "Record Deleted."});
-            }else{
-                res.json(400)
-                res.json({message: "Record didn't get deleted"});
-                console.log(err,"Record didn't get deleted")
+                res.json({message: constant.Delete_Record_ArticleId});
             }
         }
     )  
-     
+    }catch{
+                res.json(400)
+                res.json({message: constant.ArticleId_Invalid});
+                console.log(err,constant.ArticleId_Invalid)
+    }
 };
 
 //update the data
-exports.updateData = (req, res)=> {
-    
-    ClientModel.updateMany(
+exports.updateDataByArticleId = (req, res)=> {
+    try{
+    ArticleModel.updateMany(
         { 
             ArticleId:req.body.ArticleId
         },
@@ -106,16 +114,16 @@ exports.updateData = (req, res)=> {
             ArticlePublishedDate : req.body.ArticlePublishedDate,
             AuthorPhoneNumber :parseInt(req.body.AuthorPhoneNumber)
         },
-        (err, result) => {
+        (result) => {
             if (result.modifiedCount) {
                 res.status(200);
-                res.json({message: "Record updated."}); 
-            }else{
-                res.status(400);
-                res.json({message:"Record didn't get Updated"})
+                res.json({message: constant.Record_Updated}); 
             }
         }
     )    
-     
+    }catch{
+                res.status(400);
+                res.json({message:constant.ArticleId_Invalid})
+    }     
 };
 

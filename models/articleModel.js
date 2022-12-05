@@ -3,7 +3,7 @@ const Schema=mongoose.Schema
 const constant=require('../constant/constant.json')
 
 
-const clientSchema=new Schema({
+const articleSchema=new Schema({
     ArticleId:{
         type:Number
     },
@@ -36,4 +36,4 @@ const clientSchema=new Schema({
     },
 },{timestamps:true})
 
-module.exports=new mongoose.model(constant.Collection,clientSchema)
+module.exports=new mongoose.model(constant.Collection,articleSchema)

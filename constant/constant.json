@@ -1,5 +1,13 @@
 {
     "PORT":1999,
     "Mongodb_Connection":"mongodb://localhost:27017/ClientDB",
-    "Collection":"ClientModel"
+    "Collection":"ClientModel",
+    "Db_Connect":"Database is connected",
+    "Db_Connection_Failed":"Trying to reconnect",
+    "File_Not_Found":"File not found",
+    "Record_Add":"New Record is been added.",
+    "Invalid_Data":"Enter all require and valid Data",
+    "ArticleId_Invalid":"Cannot find by ArticleId",
+    "Delete_Record_ArticleId":"Record Deleted from database",
+    "Record_Updated":"Record is been updated"
 }
