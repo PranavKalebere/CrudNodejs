@@ -9,5 +9,10 @@
     "Invalid_Data":"Enter all require and valid Data",
     "ArticleId_Invalid":"Cannot find by ArticleId",
     "Delete_Record_ArticleId":"Record Deleted from database",
-    "Record_Updated":"Record is been updated"
+    "Record_Updated":"Record is been updated",
+    "Connecting":"connecting to MongoDB...",
+    "Connection_Error":"Error in MongoDb connection:",
+    "Connection_Opened":"MongoDB connection opened!",
+    "Connection_Disconnect":"MongoDB disconnected!"
+
 }
