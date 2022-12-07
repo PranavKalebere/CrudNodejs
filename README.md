@@ -81,4 +81,8 @@ curl --location --request PUT 'localhost:1999/api/update' \
 	"ArticleCreatedDate":"25/nov/2022",
 	"ArticlePublishedDate":"25/nov/2022",
 	"AuthorPhoneNumber":1234554321
+<<<<<<< HEAD
 }'
+=======
+}'
+>>>>>>> 26a72155a621b4635e42bd7c7d15c891ca63e45f
