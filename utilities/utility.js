@@ -1,6 +1,6 @@
 const moment=require('moment')
 
-module.exports=function dateValidation(date){
+module.exports.dateValidation=(date)=>{
 
     let formats=['MM-DD-YYYY','MM-DD-YYYY']
     
@@ -8,14 +8,15 @@ module.exports=function dateValidation(date){
 
 }
 
-module.exports=function validationBodyOfApiRequest(body){
+
+module.exports.validationBodyOfApiRequest = (body)=>{
     console.log(body)
     if(body.ArticleId==undefined && body.Title==undefined 
         && body.Description==undefined && body.CoverPage==undefined
         && body.AuthorFirstName==undefined && body.AuthorLastName==undefined
-        && body.AuthorEmailId==undefined && body.ArticleCreatedDate==undefined
-        && body.ArticlePublishedDate==undefined && body.AuthorPhoneNumber==undefined)
+        && body.AuthorEmailId==undefined && body.ArticlePublishedDate==undefined && body.AuthorPhoneNumber==undefined)
         {
-            return true;
-    }
+            return false;
+    } 
+    return true;
 }
