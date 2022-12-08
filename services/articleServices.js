@@ -11,7 +11,6 @@ exports.test=(req,res)=>{
 
 //For adding the data
 exports.addField = (req,res)=> {
-    // console.log(validationBodyOfApiRequest(req.body));
     try{
         let bodyValidationStatus = validationBodyOfApiRequest(req.body)
         if(bodyValidationStatus && dateValidation(req.body.ArticlePublishedDate)){
@@ -23,7 +22,7 @@ exports.addField = (req,res)=> {
                 AuthorLastName : req.body.AuthorLastName,
                 AuthorEmailId : req.body.AuthorEmailId,
                 ArticleCreatedDate : new Date().toLocaleString(), //To get auto genrated date
-                ArticlePublishedDate : Date(req.body.ArticlePublishedDate),
+                ArticlePublishedDate : req.body.ArticlePublishedDate,
                 AuthorPhoneNumber : req.body.AuthorPhoneNumber
 
             })
@@ -47,8 +46,8 @@ exports.addField = (req,res)=> {
             }
     }catch(e){
             res.status(400);
-            console.log(e);
             res.json({message: constant.Invalid_Data})
+            res.json({message:bodyValidationStatus})
     }
 };
 
