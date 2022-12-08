@@ -13,7 +13,7 @@ exports.test=(req,res)=>{
 exports.addField = (req,res)=> {
     try{
         let bodyValidationStatus = validationBodyOfApiRequest(req.body)
-        if(bodyValidationStatus && dateValidation(req.body.ArticlePublishedDate)){
+        if(bodyValidationStatus.length!=0 && dateValidation(req.body.ArticlePublishedDate)){
             const newArticleModel= new ArticleModel({
                 ArticleId : parseInt(req.body.ArticleId), 
                 Title : req.body.Title, 
@@ -43,11 +43,13 @@ exports.addField = (req,res)=> {
                 }
             })
             
+            }else{
+                res.json({message:bodyValidationStatus})
             }
     }catch(e){
             res.status(400);
             res.json({message: constant.Invalid_Data})
-            res.json({message:bodyValidationStatus})
+            
     }
 };
 
