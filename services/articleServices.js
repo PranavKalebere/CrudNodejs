@@ -4,6 +4,8 @@ const {dateValidation, validationBodyOfApiRequest}=require('../utilities/utility
 
 const constant=require('../constant/constant.json')
 
+const logger= require('../logger/logger');
+
 //For testing the API
 exports.test=(req,res)=>{
     res.json({message:'Greeting api'})
@@ -11,9 +13,10 @@ exports.test=(req,res)=>{
 
 //For adding the data
 exports.addField = (req,res)=> {
+
     try{
-        let bodyValidationStatus = validationBodyOfApiRequest(req.body)
-        if(bodyValidationStatus.length!=0 && dateValidation(req.body.ArticlePublishedDate)){
+        let bodyValidationStatus = validationBodyOfApiRequest(req)
+        if(bodyValidationStatus.length==0 && dateValidation(req.body.ArticlePublishedDate)){
             const newArticleModel= new ArticleModel({
                 ArticleId : parseInt(req.body.ArticleId), 
                 Title : req.body.Title, 
@@ -23,32 +26,35 @@ exports.addField = (req,res)=> {
                 AuthorEmailId : req.body.AuthorEmailId,
                 ArticleCreatedDate : new Date().toLocaleString(), //To get auto genrated date
                 ArticlePublishedDate : req.body.ArticlePublishedDate,
-                AuthorPhoneNumber : req.body.AuthorPhoneNumber
+                AuthorPhoneNumber : parseInt(req.body.AuthorPhoneNumber)
 
             })
-            console.log(newArticleModel)
+            logger.info(newArticleModel)
             if(!req.file){
-                console.log(constant.File_Not_Found)
+                logger.error(constant.File_Not_Found)
             }else{
                 newArticleModel.CoverPage = req.file.path
             }
 
             newArticleModel.save(err => {
                 if (err) {
-                    console.error(err);
+                    logger.error(err);
                     res.sendStatus(400);
                 }else{
                     res.status(200)
                     res.json({message: constant.Record_Add})
+                    logger.info(constant.Record_Add)
                 }
             })
             
             }else{
                 res.json({message:bodyValidationStatus})
+                logger.error(bodyValidationStatus)
             }
     }catch(e){
             res.status(400);
             res.json({message: constant.Invalid_Data})
+            logger.info(constant.Invalid_Data)
             
     }
 };
@@ -56,25 +62,28 @@ exports.addField = (req,res)=> {
 //For getting the data by ArticleId
 exports.getByArticleId= (req, res) =>{
     try{
-    console.log(req.params.ArticleId)
+    logger.info(req.params.ArticleId)
     ArticleModel.find(
         { 
             ArticleId:parseInt( req.params.ArticleId)
         
         }, 
         (err, results) => {
-            console.log(results)
+            logger.info(results)
             if (!err) {
                 res.json(results); 
+                logger.info(results)
             }else{
                 res.json(400)    
                 res.json(err);
+                logger.error(err)
             }
         }
     )  
     }catch{
         res.status(400);
         res.json({message: constant.ArticleId_Invalid})
+        logger.error(constant.ArticleId_Invalid)
     }
 };
 
@@ -90,43 +99,57 @@ exports.deleteDataByArticleId = (req, res) =>{
             if (!err) {
                 res.json(200)
                 res.json({message: constant.Delete_Record_ArticleId});
+                logger.info(constant.Delete_Record_ArticleId)
             }
         }
     )  
     }catch{
                 res.json(400)
                 res.json({message: constant.ArticleId_Invalid});
-                console.log(err,constant.ArticleId_Invalid)
+                logger.error(err,constant.ArticleId_Invalid)
     }
 };
 
 //update the data
-exports.updateDataByArticleId = (req, res)=> {
+exports.updateDataByArticleId = async (req, res)=> {
     try{
-    ArticleModel.updateMany(
-        { 
-            ArticleId:req.body.ArticleId
-        },
-        {
-            ArticleId :parseInt(req.body.ArticleId), 
-            Title : req.body.Title, 
-            Description : req.body.Descriptio, 
-            AuthorFirstName : req.body.AuthorFirstName,
-            AuthorLastName : req.body.AuthorLastName,
-            AuthorEmailId : req.body.AuthorEmailId,
-            ArticleCreatedDate : req.body.ArticleCreatedDate,
-            ArticlePublishedDate : req.body.ArticlePublishedDate,
-            AuthorPhoneNumber :parseInt(req.body.AuthorPhoneNumber)
-        },
-        (result) => {
+        let file = req.file;
+        if(!file){
+            logger.warn(constant.File_Not_Found)
+        }else{
+            const result = await ArticleModel.updateOne(
+                { 
+                    ArticleId:parseInt(req.body.ArticleId)
+                },
+                {
+                    ArticleId :parseInt(req.body.ArticleId), 
+                    Title : req.body.Title, 
+                    Description : req.body.Descriptio, 
+                    AuthorFirstName : req.body.AuthorFirstName,
+                    AuthorLastName : req.body.AuthorLastName,
+                    AuthorEmailId : req.body.AuthorEmailId,
+                    ArticleCreatedDate : req.body.ArticleCreatedDate,
+                    ArticlePublishedDate : req.body.ArticlePublishedDate,
+                    AuthorPhoneNumber :parseInt(req.body.AuthorPhoneNumber),
+                    CoverPage: file.path
+                }
+            ).clone().catch(err=> {
+                logger.error(err);
+                res.json({message:err})
+            });
+
+
             if (result.modifiedCount) {
                 res.status(200);
                 res.json({message: constant.Record_Updated}); 
+                logger.info(constant.Record_Updated)
             }
+            
+
         }
-    )    
     }catch{
                 res.status(400);
                 res.json({message:constant.ArticleId_Invalid})
+                logger.error(constant.ArticleId_Invalid)
     }     
 };

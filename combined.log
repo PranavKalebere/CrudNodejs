@@ -1,0 +1,9 @@
+{"level":"info","message":"Server running on Port 1999","timestamp":"2022-12-09T12:15:36.413Z"}
+{"level":"info","message":"Server running on Port 1999","timestamp":"2022-12-09T12:16:51.992Z"}
+{"level":"info","message":"Server running on Port 1999","timestamp":"2022-12-09T12:42:32.315Z"}
+{"level":"error","message":["AuthorPhoneNumber is Undefiend"],"timestamp":"2022-12-09T12:42:51.137Z"}
+{"level":"info","message":"Server running on Port 1999","timestamp":"2022-12-09T12:43:49.551Z"}
+{"level":"error","message":["AuthorPhoneNumber is Undefiend"],"timestamp":"2022-12-09T12:44:07.509Z"}
+{"level":"info","message":"Server running on Port 1999","timestamp":"2022-12-09T13:05:19.213Z"}
+{"level":"info","message":{"ArticleCreatedDate":"2022-12-09T13:05:49.000Z","ArticleId":808080,"ArticlePublishedDate":"2019-12-31T18:30:00.000Z","AuthorEmailId":"Legendbb@hotness.com","AuthorFirstName":"Legend","AuthorLastName":"bb","AuthorPhoneNumber":34455544,"Description":"Through the tough time","Title":"Legend is Born","_id":"639332ad1a8f335ab31ba08d"},"timestamp":"2022-12-09T13:05:49.613Z"}
+{"level":"info","message":"New Record is been added.","timestamp":"2022-12-09T13:05:55.360Z"}

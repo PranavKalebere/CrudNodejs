@@ -1,4 +1,5 @@
 const moment=require('moment')
+const constant=require('../constant/constant.json')
 
 module.exports.dateValidation=(date)=>{
 
@@ -8,49 +9,39 @@ module.exports.dateValidation=(date)=>{
 
 }
 
-
-// module.exports.validationBodyOfApiRequest = (body)=>{
-//     console.log(body)
-//     if(body.ArticleId==undefined && body.Title==undefined 
-//         && body.Description==undefined && body.CoverPage==undefined
-//         && body.AuthorFirstName==undefined && body.AuthorLastName==undefined
-//         && body.AuthorEmailId==undefined && body.ArticlePublishedDate==undefined && body.AuthorPhoneNumber==undefined)
-//         {
-//             return false;
-//     } 
-//     return true;
-// }
-
-
-module.exports.validationBodyOfApiRequest = (body)=>{
+module.exports.validationBodyOfApiRequest = (request)=>{
+    const body = request.body;
+    const file = request.file
     let missingVariable=[]
-    console.log(body)
+    console.log(file)
     if(body.ArticleId==undefined){
-        missingVariable.push("ArticleId is Undefiend")
+        missingVariable.push(constant.Undefiend_ArticleId)
     }
     if(body.Title==undefined){
-        missingVariable.push("Title is Undefiend")
+        missingVariable.push(constant.Undefiend_Title)
     }
     if(body.Description==undefined){
-        missingVariable.push("Description is Undefiend")
+        missingVariable.push(constant.Undefiend_Description)
     }
-    if(body.CoverPage==undefined){
-        missingVariable.push("CoverPage is Undefiend")
+    if(file==undefined){
+        missingVariable.push(constant.Undefiend_CoverPage)
     }
     if(body.AuthorFirstName==undefined){
-        missingVariable.push("AuthorFirstName is Undefiend")
+        missingVariable.push(constant.Undefiend_AuthorFirstName)
     }
     if(body.AuthorLastName==undefined){
-        missingVariable.push("AuthorLastName is Undefiend")
+        missingVariable.push(constant.Undefiend_AuthorLastName)
     }
     if(body.AuthorEmailId==undefined){
-        missingVariable.push("AuthorEmailId is Undefiend")
+        missingVariable.push(constant.Undefiend_AuthorEmailId)
     }
     if(body.ArticlePublishedDate==undefined){
-        missingVariable.push("ArticlePublishedDate is Undefiend")
+        missingVariable.push(constant.Undefiend_ArticlePublishedDate)
     }
     if(body.AuthorPhoneNumber==null){
-        missingVariable.push("AuthorPhoneNumber is Undefiend")
+        missingVariable.push(constant.Undefiend_AuthorPhoneNumber)
     }
     return missingVariable;
 }
+
+

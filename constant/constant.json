@@ -3,7 +3,7 @@
     "Mongodb_Connection":"mongodb://localhost:27017/ClientDB",
     "Collection":"ClientModel",
     "Db_Connect":"Database is connected",
-    "Db_Connection_Failed":"Trying to reconnect",
+    "Db_Connection_Reconnecting":"Trying to reconnect",
     "File_Not_Found":"File not found",
     "Record_Add":"New Record is been added.",
     "Invalid_Data":"Enter all require and valid Data",
@@ -13,7 +13,17 @@
     "Connecting":"connecting to MongoDB...",
     "Connection_Error":"Error in MongoDb connection:",
     "Connection_Opened":"MongoDB connection opened!",
-    "Connection_Disconnect":"MongoDB disconnected!"
+    "Connection_Disconnect":"MongoDB disconnected!",
+
+    "Undefiend_ArticleId":"ArticleId is Undefiend",
+    "Undefiend_Title":"Title is Undefiend",
+    "Undefiend_Description":"Description is Undefiend",
+    "Undefiend_CoverPage":"CoverPage is Undefiend",
+    "Undefiend_AuthorFirstName":"AuthorFirstName is Undefiend",
+    "Undefiend_AuthorLastName":"AuthorLastName is Undefiend",
+    "Undefiend_AuthorEmailId":"AuthorEmailId is Undefiend",
+    "Undefiend_ArticlePublishedDate":"ArticlePublishedDate is Undefiend",
+    "Undefiend_AuthorPhoneNumber":"AuthorPhoneNumber is Undefiend"
 
 }
 
