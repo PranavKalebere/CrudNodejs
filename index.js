@@ -6,10 +6,13 @@ const controller = require('./controllers/articleContoller')
 
 const userController = require('./controllers/userController')
 
-const logger= require('./logger/logger');
-
+const logger= require('./logger/logger')
 
 require('./connection/mongodbConnection')
+
+require('./swagger/swagger')
+
+
 
 
 
@@ -29,6 +32,8 @@ app.listen(constant.PORT, () => {
     logger.info("Server running on Port " + constant.PORT)
 
 })
+
+
 
 
 
