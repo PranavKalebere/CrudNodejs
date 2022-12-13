@@ -10,10 +10,8 @@ const logger= require('./logger/logger')
 
 require('./connection/mongodbConnection')
 
-require('./swagger/swagger')
-
-
-
+const swaggerSpec=require('./swagger/swagger')
+const swaggerUi=require('swagger-ui-express')
 
 
 app.use(bodyParser.json());
@@ -34,6 +32,8 @@ app.listen(constant.PORT, () => {
 })
 
 
+// swagger defining
+app.use('/swaggerApi',swaggerUi.serve,swaggerUi.setup(swaggerSpec))
 
 
 

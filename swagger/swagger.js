@@ -1,9 +1,10 @@
 
 const swaggerJSDoc=require('swagger-jsdoc')
-const swaggerUi=require('swagger-ui-express')
+
+
 
 const option={
-    defination:{
+    definition:{
         openapi:'3.0.0',
         version: '1.0.0',
         info: {
@@ -11,12 +12,72 @@ const option={
         },
         service:[
             {
-                    url :'http//localhost:1999/'
+                    url :'http://localhost:1999/'
             }
-        ]
+        ],
     },
-    apis:['./controller/articleController.js'],
+    apis:['./controller/*.js'],
 };
 
 const swaggerSpec=swaggerJSDoc(option)
-app.use('/swaggerApi',swaggerUi.serve,swaggerUi.setup(swaggerSpec))
+
+
+
+/**
+ * @swagger
+ *      component:
+ *          schema:
+ *              articleModel:
+ *                  type:object
+ *                      properties:
+ *                          ArticleId:
+ *                                  type:integer
+ *                              Title:
+ *                                  type:string
+ *                              Description:
+ *                                       type:string
+ *                               CoverPage:
+ *                                       type:string
+ *                               AuthorFirstName:
+ *                                       type:string
+ *                                AuthorLastName:
+ *                                       type:string
+ *                                AuthorEmailId:
+ *                                       type:string
+ *                                 ArticleCreatedDate:
+ *                                       type:string
+ *                                ArticlePublishedDate:
+ *                                       type:string
+ *                               AuthorPhoneNumber:
+ *                                       type:integer
+ */
+
+/**
+ * @swagger
+ * /api/list/{ArticleId}
+ *   get:
+ *     summary: gets posts by ArticleId
+ *     tags: [Posts]
+ *     parameters:
+ *       - in : path
+ *         name: id
+ *         description: id of post
+ *         schema:
+ *           type: integer
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: posts by its ArticleId
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ArticleId'
+ *       400:
+ *         description: post can not be found
+ */
+
+
+
+
+
+ module.exports=swaggerSpec
