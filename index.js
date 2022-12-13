@@ -34,6 +34,6 @@ app.listen(constant.PORT, () => {
 
 // swagger defining
 app.use('/swaggerApi',swaggerUi.serve,swaggerUi.setup(swaggerSpec))
-
+logger.info(swaggerSpec)
 
 
