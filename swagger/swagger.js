@@ -1,5 +1,6 @@
 
 const swaggerJSDoc=require('swagger-jsdoc')
+const constant= require('../constant/constant.json')
 
 
 const option={
@@ -11,7 +12,7 @@ const option={
         },
         service:[
             {
-                    url :'http://localhost:1999/'
+                    url :constant.SwaggerUrl
             }
         ],
     },
