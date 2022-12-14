@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({
 app.use('/uploads', express.static(`${__dirname}/uploads`));
 
 app.use('/api', controller)
-app.use('/api', userController)
+app.use('/userApi', userController)
 
 app.listen(constant.PORT, () => {
     
@@ -33,7 +33,7 @@ app.listen(constant.PORT, () => {
 
 
 // swagger defining
-app.use('/swaggerApi',swaggerUi.serve,swaggerUi.setup(swaggerSpec))
+app.use(constant.SwaggerApi,swaggerUi.serve,swaggerUi.setup(swaggerSpec))
 logger.info(swaggerSpec)
 
 
