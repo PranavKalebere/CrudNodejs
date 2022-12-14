@@ -16,3 +16,7 @@
 {"level":"info","message":"Server running on Port 1999","timestamp":"2022-12-13T08:06:05.305Z"}
 {"level":"info","message":{"components":{},"info":{"title":"NodeJs CRUD operation using swagger"},"openapi":"3.0.0","paths":{},"service":[{"url":"http://localhost:1999/"}],"tags":[],"version":"1.0.0"},"timestamp":"2022-12-13T12:40:41.521Z"}
 {"level":"info","message":"Server running on Port 1999","timestamp":"2022-12-13T12:40:41.526Z"}
+{"level":"info","message":{"components":{},"info":{"title":"NodeJs CRUD operation using swagger"},"openapi":"3.0.0","paths":{},"service":[{"url":"http://localhost:1999/"}],"tags":[],"version":"1.0.0"},"timestamp":"2022-12-14T06:44:09.912Z"}
+{"level":"info","message":"Server running on Port 1999","timestamp":"2022-12-14T06:44:09.917Z"}
+{"level":"info","message":{"components":{},"info":{"title":"NodeJs CRUD operation using swagger"},"openapi":"3.0.0","paths":{},"service":[{"url":"http://localhost:1999/"}],"tags":[],"version":"1.0.0"},"timestamp":"2022-12-14T06:57:28.689Z"}
+{"level":"info","message":"Server running on Port 1999","timestamp":"2022-12-14T06:57:28.693Z"}
