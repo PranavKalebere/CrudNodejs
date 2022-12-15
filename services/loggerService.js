@@ -1,9 +1,10 @@
 const logger = require("../logger/logger");
 
 
-module.export.checkLoggerLevel=(level,(req,res)=>{
+module.exports.checkLoggerLevel=(level,(req,res)=>{
     try{    
         checkLoggerLevel(req.param.level)
+        res.json({message:"changed"})
 
     }catch(err){
         res.status(400);
