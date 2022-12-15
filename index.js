@@ -24,6 +24,7 @@ app.use('/uploads', express.static(`${__dirname}/uploads`));
 
 app.use('/api', controller)
 app.use('/userApi', userController)
+app.use('/loggerApi', controller)
 
 app.listen(constant.PORT, () => {
     

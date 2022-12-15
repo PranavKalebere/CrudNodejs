@@ -4,6 +4,7 @@ const {printf,timestamp,combine,errors, json}=format;
 
 const constant=require('../constant/constant.json')
 
+require('dotenv')
 
 const logFormat = printf(({ level, message, timestamp, stack }) => {
     return `${timestamp} ${level}: ${stack || message}`;
@@ -26,5 +27,4 @@ const logger = createLogger({
         new transports.File({ filename: constant.Info_Log, level: 'info' }),
   ],
 });
-
 module.exports=logger;
