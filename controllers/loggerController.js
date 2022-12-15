@@ -3,4 +3,6 @@ const router=express.Router()
 
 const ls=require('../services/loggerService')
 
-router.get('/checkLogger',ls.checkLoggerLevel)
+router.get('/checkLogger/:level',ls.checkLoggerLevel)
+
+module.exports=router

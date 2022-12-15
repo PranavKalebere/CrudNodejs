@@ -6,7 +6,12 @@ const controller = require('./controllers/articleContoller')
 
 const userController = require('./controllers/userController')
 
-const logger= require('./logger/logger')
+const loggerController = require('./controllers/loggerController')
+
+
+let {winston_logger, setLevel} = require("./logger/logger");
+let logger = winston_logger();
+
 
 require('./connection/mongodbConnection')
 
@@ -24,7 +29,7 @@ app.use('/uploads', express.static(`${__dirname}/uploads`));
 
 app.use('/api', controller)
 app.use('/userApi', userController)
-app.use('/loggerApi', controller)
+app.use('/loggerApi', loggerController)
 
 app.listen(constant.PORT, () => {
     
@@ -36,5 +41,26 @@ app.listen(constant.PORT, () => {
 // swagger defining
 app.use(constant.SwaggerApi,swaggerUi.serve,swaggerUi.setup(swaggerSpec))
 logger.info(swaggerSpec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
