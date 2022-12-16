@@ -25,7 +25,7 @@
     "Undefiend_ArticlePublishedDate":"ArticlePublishedDate is Undefiend",
     "Undefiend_AuthorPhoneNumber":"AuthorPhoneNumber is Undefiend",
 
-    "SwaggerUrl":"http://localhost:1999/",
+    "SwaggerUrl":"http://localhost:2999/",
     "SwaggerApi":"/swaggerApi",
 
     "Combine_Logs":"logger/combined.log",
