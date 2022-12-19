@@ -84,7 +84,7 @@ curl --location --request PUT 'localhost:1999/api/update' \
 # Change the log level
 curl --location --request GET 'localhost:1999/loggerApi/checkLogger/error'
 
-#Swagger URL
+# Swagger URL
 http://localhost:1999/swaggerApi/api#/
 
 
