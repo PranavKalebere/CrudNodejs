@@ -81,6 +81,12 @@ curl --location --request PUT 'localhost:1999/api/update' \
 	"ArticleCreatedDate":"25/nov/2022",
 	"ArticlePublishedDate":"25/nov/2022",
 	"AuthorPhoneNumber":1234554321
+
+# Swagger url
+http://localhost:1999/swaggerApi/api
+
+# Change of log level 
+curl --location --request GET 'localhost:1999/loggerApi/checkLogger/error'
 <<<<<<< HEAD
 }'
 =======
