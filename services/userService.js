@@ -1,5 +1,8 @@
 const UserModel=require('../models/userModel')
 
+let {winston_logger, setLevel} =require('../logger/logger')
+let logger = winston_logger();
+
 
 //For adding the data
 exports.addData = (req,res)=> {
@@ -13,7 +16,7 @@ exports.addData = (req,res)=> {
 
     newUserModel.save(err => {
         if (err) {
-            console.error(err);
+            logger.error(err);
             res.sendStatus(400);
         }else{
             res.status(200)
@@ -32,7 +35,7 @@ exports.getData= (req, res) =>{
         
         }, 
         (err, results) => {
-            console.log(results)
+            logger.info(results)
             if (!err) {
                 res.json(200)
                 res.json(results); 
@@ -59,7 +62,7 @@ exports.deleteData = (req, res) =>{
             }else{
                 res.json(400)
                 res.json({message: "Record didn't get deleted"});
-                console.log(err,"Record didn't get deleted")
+                logger.error(err,"Record didn't get deleted")
             }
         }
     )  

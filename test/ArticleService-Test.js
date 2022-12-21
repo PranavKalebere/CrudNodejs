@@ -1,11 +1,33 @@
 const chai=require('chai')
 const chaiHttp=require('chai-http')
 
+const constant=require('../constant/constant.json')
 
-// //Assertion 
+const articleModel=require('../models/articleModel')
+
+const Mongoose = require('mongoose').Mongoose;
+const mongoose = new Mongoose();
+ 
+const MockMongoose = require('mock-mongoose').MockMongoose;
+const mockMongoose = new MockMongoose(mongoose);
+
+
+//Assertion 
 let should = chai.should();
 
 chai.use(chaiHttp)
+
+describe('Mock Database Connection',()=>{
+         //Before each test we empty the database
+         describe('Database', () => {
+            beforeEach((done) => {                 
+                mockMongoose.prepareStorage().then(()=>{
+                mongoose.connect(constant.Mongodb_Connection)
+                done()
+                })
+            });
+        });
+})
 
 describe('Test API',()=>{
 
@@ -45,16 +67,6 @@ describe('Test API',()=>{
                 res.should.have.status(200)
                 res.body.should.be.a('object');
                 res.body.should.have.property('message');
-                // res.body.should.have.property('ArticleId');
-                // res.body.should.have.property('Title');
-                // res.body.should.have.property('Description');
-                // res.body.should.have.property('CoverPage');
-                // res.body.should.have.property('AuthorFirstName');
-                // res.body.should.have.property('AuthorLastName');
-                // res.body.should.have.property('AuthorEmailId');
-                // res.body.should.have.property('ArticleCreatedDate');
-                // res.body.should.have.property('ArticlePublishedDate');
-                // res.body.should.have.property('AuthorPhoneNumber');
                 done();
             });
 
@@ -86,17 +98,7 @@ describe('Test API',()=>{
             .end((err,response)=>{
                 response.should.have.status(200)
                 response.body.should.be.a('object');
-                res.body.should.have.property('message');
-                // response.body.should.have.property('ArticleId').eql(2001);
-                // response.body.should.have.property('Title').eql('Demo Updated Title');
-                // response.body.should.have.property('Description').eql('Demo Updated Description');
-                // response.body.should.have.property('CoverPage').eql('Demo Updated CoverPage');
-                // response.body.should.have.property('AuthorFirstName').eql('Demo Updated AuthorFirstName');
-                // response.body.should.have.property('AuthorLastName').eql('Demo Updated AuthorLastName');
-                // response.body.should.have.property('AuthorEmailId').eql('Demo Updated AuthorEmailId');
-                // response.body.should.have.property('ArticleCreatedDate').eql('Demo Updated ArticleCreatedDate');
-                // response.body.should.have.property('ArticlePublishedDate').eql('Demo Updated ArticlePublishedDate');
-                // response.body.should.have.property('AuthorPhoneNumber').eql(9898989898);
+                response.body.should.have.property('message');        
                 done();
             });
 
@@ -109,11 +111,9 @@ describe('Test API',()=>{
         it('It should delete data by ArticleId',(done)=>{
             chai.request('localhost:1999')
             .delete('/api/delete/1088')
-            // .end((err,response)=>{
-            //     response.should.have.status(200)
+
                 done();
             });
 
         });
-    // });
 });

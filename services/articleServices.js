@@ -4,7 +4,9 @@ const {dateValidation, validationBodyOfApiRequest}=require('../utilities/utility
 
 const constant=require('../constant/constant.json')
 
-const logger= require('../logger/logger');
+let {winston_logger, setLevel} =require('../logger/logger')
+let logger = winston_logger();
+
 
 //For testing the API
 exports.test=(req,res)=>{
