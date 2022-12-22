@@ -17,8 +17,9 @@ let should = chai.should();
 
 chai.use(chaiHttp)
 
+
+//mock database
 describe('Mock Database Connection',()=>{
-         //Before each test we empty the database
          describe('Database', () => {
             beforeEach((done) => {                 
                 mockMongoose.prepareStorage().then(()=>{
@@ -36,11 +37,12 @@ describe('Test API',()=>{
         it('It should be get by ArticleId',(done)=>{
             chai.request('localhost:1999')
             .get('/api/list/123')
+            .end((err,res)=>{
+                res.should.have.status(200)
                 done();
             });
-
         });
-    // });
+    });
 
     //Post add data
 
@@ -62,8 +64,6 @@ describe('Test API',()=>{
             .post('/api/add')
             .send(event)
             .end((err,res)=>{
-                console.log(res.body);
-                console.log(err);
                 res.should.have.status(200)
                 res.body.should.be.a('object');
                 res.body.should.have.property('message');
@@ -79,7 +79,7 @@ describe('Test API',()=>{
         it('It should add the data',(done)=>{
 
             const event={
-                ArticleId:2001,
+                ArticleId:80000,
                 Title:"Demo Updated Title",
                 Description:"Demo Updated Description",
                 CoverPage:"Demo Updated CoverPage",
@@ -92,13 +92,24 @@ describe('Test API',()=>{
 
             }
 
-            chai.request('localhost:1999/')
+            chai.request('localhost:1999')
             .put('/api/update')
             .send(event)
-            .end((err,response)=>{
-                response.should.have.status(200)
-                response.body.should.be.a('object');
-                response.body.should.have.property('message');        
+            .end((err,res)=>{
+                console.log(err);
+                console.log(res.body)
+                res.should.have.status(200)
+                res.body.should.be.a('object');
+                res.body.should.have.property('message');       
+                res.body.should.have.property('ArticleId').eql(80000) 
+                res.body.should.have.property('Title').eql('Demo Updated Title')
+                res.body.should.have.property('Description').eql("Demo Updated Description")
+                res.body.should.have.property('CoverPage').eql("Demo Updated CoverPage")
+                res.body.should.have.property('AuthorFirstName').eql("Demo Updated AuthorFirstName")
+                res.body.should.have.property('AuthorLastName').eql("Demo Updated AuthorLastName")
+                res.body.should.have.property('AuthorEmailId').eql("Demo Updated ArticleCreatedDate")
+                res.body.should.have.property('ArticlePublishedDate').eql("Demo Updated ArticlePublishedDate")
+                res.body.should.have.property('AuthorPhoneNumber').eql(9898989898)
                 done();
             });
 
@@ -111,9 +122,10 @@ describe('Test API',()=>{
         it('It should delete data by ArticleId',(done)=>{
             chai.request('localhost:1999')
             .delete('/api/delete/1088')
-
+            .end((err,res)=>{
+                res.should.have.status(200)
                 done();
             });
-
         });
+    });
 });

@@ -116,7 +116,7 @@ exports.deleteDataByArticleId = (req, res) =>{
 exports.updateDataByArticleId = async (req, res)=> {
     try{
         let file = req.file;
-        if(!file){
+        if(file){
             logger.warn(constant.File_Not_Found)
         }else{
             const result = await ArticleModel.updateOne(
