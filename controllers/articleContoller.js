@@ -20,7 +20,7 @@ router.post(apiConstant.Add_Data,upload.single('CoverPage'),cs.addField)
 router.delete(apiConstant.Delete_By_ArticleId,cs.deleteDataByArticleId)
 
 //update data
-router.post(apiConstant.Update_Data,upload.single('CoverPage'),cs.updateDataByArticleId)
+router.put(apiConstant.Update_Data,upload.single('CoverPage'),cs.updateDataByArticleId)
 
 
 module.exports=router

@@ -116,12 +116,13 @@ exports.deleteDataByArticleId = (req, res) =>{
 exports.updateDataByArticleId = async (req, res)=> {
     try{
         let file = req.file;
-        if(file){
+        if(!file){
             logger.warn(constant.File_Not_Found)
         }else{
             const result = await ArticleModel.updateOne(
                 { 
                     ArticleId:parseInt(req.body.ArticleId)
+                    
                 },
                 {
                     ArticleId :parseInt(req.body.ArticleId), 
@@ -139,15 +140,11 @@ exports.updateDataByArticleId = async (req, res)=> {
                 logger.error(err);
                 res.json({message:err})
             });
-
-
             if (result.modifiedCount) {
                 res.status(200);
                 res.json({message: constant.Record_Updated}); 
                 logger.info(constant.Record_Updated)
             }
-            
-
         }
     }catch{
                 res.status(400);
