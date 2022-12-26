@@ -87,8 +87,4 @@ http://localhost:1999/swaggerApi/api
 
 # Change of log level 
 curl --location --request GET 'localhost:1999/loggerApi/checkLogger/error'
-<<<<<<< HEAD
 }'
-=======
-}'
->>>>>>> 26a72155a621b4635e42bd7c7d15c891ca63e45f
