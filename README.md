@@ -70,17 +70,16 @@ curl --location --request DELETE 'localhost:1999/api/delete/12355555
 
 # Update the data via ArticleId
 curl --location --request PUT 'localhost:1999/api/update' \
---header 'Content-Type: application/json' \
---data-raw '{
-	"ArticleId":333,
-	"Title":"abc",
-	"Description":"Testing document for nodejs",
-	"AuthorFirstName":"pqrst",
-	"AuthorLastName":"xyzxyz",
-	"AuthorEmailId":"xyzxyz@mail.com",
-	"ArticleCreatedDate":"25/nov/2022",
-	"ArticlePublishedDate":"25/nov/2022",
-	"AuthorPhoneNumber":1234554321
+--form 'ArticleId="1234321"' \
+--form 'Title="prem ek gaddar kahani"' \
+--form 'Description="tum jano"' \
+--form 'CoverPage=@"/C:/Users/Pranav.Kalebere/OneDrive - NEC Software Solutions/Pictures/Screenshots/Screenshot (1).png"' \
+--form 'AuthorFirstName="kyapata"' \
+--form 'AuthorLastName="kisko pata"' \
+--form 'AuthorEmailId="malum nahi"' \
+--form 'ArticleCreatedDate=""' \
+--form 'ArticlePublishedDate="11/11/2000"' \
+--form 'AuthorPhoneNumber="0090009900"'
 
 # Swagger url
 http://localhost:1999/swaggerApi/api
